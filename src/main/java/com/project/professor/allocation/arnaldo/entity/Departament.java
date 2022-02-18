@@ -1,14 +1,19 @@
-package entity;
+package com.project.professor.allocation.arnaldo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "departament")
 public class Departament {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 
@@ -26,6 +31,11 @@ public class Departament {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Departament [id=" + id + ", name=" + name + "]";
 	}
 
 }

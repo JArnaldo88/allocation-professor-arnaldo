@@ -1,11 +1,17 @@
-package entity;
+package com.project.professor.allocation.arnaldo.entity;
 
 import java.time.DayOfWeek;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Allocation {
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private DayOfWeek day;
 	private Date start;
@@ -47,6 +53,11 @@ public class Allocation {
 	}
 	public void setProfessorId(long professorId) {
 		this.professorId = professorId;
+	}
+	@Override
+	public String toString() {
+		return "Allocation [id=" + id + ", day=" + day + ", start=" + start + ", end=" + end + ", courseId=" + courseId
+				+ ", professorId=" + professorId + "]";
 	}
 	
 
