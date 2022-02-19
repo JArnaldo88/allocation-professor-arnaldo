@@ -5,16 +5,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Professor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	private String name;
+
 	@Column(length = 11, unique = true)
 	private String cpf;
-	private long departamentid;
+
+	@Column(name = "department_id", nullable = false)
+	private Long departmentId;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "department_id", updatable = false, insertable = false, nullable = false)
+	private Departament depart;
 
 	public long getId() {
 		return id;
@@ -41,16 +51,16 @@ public class Professor {
 	}
 
 	public long getDepartamentid() {
-		return departamentid;
+		return getDepartamentid();
 	}
 
 	public void setDepartamentid(long departamentid) {
-		this.departamentid = departamentid;
+		this.departmentId = departamentid;
 	}
 
 	@Override
 	public String toString() {
-		return "Professor [id=" + id + ", name=" + name + ", cpf=" + cpf + ", departamentid=" + departamentid + "]";
+		return "Professor [id=" + id + ", name=" + name + ", cpf=" + cpf + ", departamentid=" + departmentId + "]";
 	}
 
 }
