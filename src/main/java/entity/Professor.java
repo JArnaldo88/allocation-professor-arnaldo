@@ -10,13 +10,15 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Professor {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+    
+	@Column(name="name", nullable = false)
 	private String name;
 
-	@Column(length = 11, unique = true)
+	@Column(length = 11, unique = true, nullable = false)
 	private String cpf;
 
 	@Column(name = "department_id", nullable = false)
@@ -25,6 +27,22 @@ public class Professor {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "department_id", updatable = false, insertable = false, nullable = false)
 	private Departament depart;
+
+	public Long getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public Departament getDepart() {
+		return depart;
+	}
+
+	public void setDepart(Departament depart) {
+		this.depart = depart;
+	}
 
 	public long getId() {
 		return id;

@@ -2,29 +2,74 @@ package entity;
 
 import java.time.DayOfWeek;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name="allocation")
 public class Allocation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	@Enumerated(EnumType.STRING)
+	@Column( name="day", nullable = false)
 	private DayOfWeek day;
+	
 	@Temporal(TemporalType.TIME)
+	@Column (name = "start", nullable = false)
 	private Date start;
+	
 	@Temporal(TemporalType.TIME)
+	@Column (name = "end", nullable = false)
 	private Date end;
-	private long courseId;
-	private long professorId;
+	
+	@Column(name= "courseId", nullable=false)
+	private Long courseId;
+	
+	@ManyToOne(optional = false)
+    @JoinColumn ( name = "courseId", updatable = false, insertable = false, nullable = false)
+	private Course course;
+	
+	
+	@Column(name = "professorId", nullable = false)
+	private Long professorId;
+	
+	@ManyToOne (optional = false)
+	@JoinColumn (name = "professorId", updatable = false, insertable = false, nullable = false)
+	private Professor professor;
+	
+	
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	public void setCourseId(Long courseId) {
+		this.courseId = courseId;
+	}
+	public void setProfessorId(Long professorId) {
+		this.professorId = professorId;
+	}
 	public long getId() {
 		return id;
 	}
