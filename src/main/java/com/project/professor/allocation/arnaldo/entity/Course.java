@@ -1,4 +1,4 @@
-package entity;
+package com.project.professor.allocation.arnaldo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,38 +7,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table(name = "departament")
-public class Departament {
-
+@Table(name = "course")
+public class Course {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
-	@Column(name= "name", unique = true, nullable = false)
+	@Column(name = "name", nullable = false, unique = true )
 	private String name;
-
-	public Long getId() {
+	
+	
+	public long getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	@Override
 	public String toString() {
-		return "Departament [id=" + id + ", name=" + name + "]";
+		return "Course [id=" + id + ", name=" + name + "]";
 	}
+	
+	
+	
 
 }
