@@ -10,83 +10,78 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
-
-import com.project.professor.allocation.arnaldo.entity.Professor;
+import com.project.professor.allocation.arnaldo.entity.Course;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 @TestPropertySource(locations = "classpath:application.properties")
-public class ProfessorRepositoryTest {
+public class CourseRepositoryTest {
 
 	@Autowired
-	ProfessorRepository professorRepository;
+	CourseRepository courseRepository;
 	
 	@Test
 	public void findAll() {
 		// Act
-		List<Professor> prof = professorRepository.findAll();
+		List<Course> course = courseRepository.findAll();
 
 		// Print
-		System.out.println(prof);
+		System.out.println(course);
 	}
-
+	
 	@Test
 	public void findById() {
-	// Arrange
-	Professor professor = professorRepository.findById(1L).orElse(null);
+		// Arrange
+		Course course = courseRepository.findById(1L).orElse(null);
 
-	// Act
+		// Act
 
-	// Print
-	System.out.println(professor);
+		// Print
+		System.out.println(course);
 	}
 
 	@Test
 	public void save_create() throws ParseException {
-	// Arrange
-	Professor professor = new Professor();
-	professor.setName("Tiago Peladeiro");
-	professor.setCpf("123456789");
-	
-	// Act
-	Professor prof = professorRepository.save(professor);
+		// Arrange
+		Course course = new Course();
 
-	// Print
-	System.out.println(prof);
+		course.setName("ADM");
+		// Act
+		Course courses = courseRepository.save(course);
 
-}
+		// Print
+		System.out.println(courses);
+
+	}
 
 	@Test
 	public void update() throws ParseException {
-	// Arrange
-	Professor professor = new Professor();
+		// Arrange
+		Course course = new Course();
 
-	professor.setName("Rafael");
-	professor.setId(1L);
-	professor.setCpf("9");
-	
-	// Act
-	Professor prof = professorRepository.save(professor);
+		course.setName("ADM");
+		course.setId(1L);
+		// Act
+		Course courses = courseRepository.save(course);
 
-	// Print
-	System.out.println(prof);
+		// Print
+		System.out.println(courses);
 
-}
+	}
 
 	@Test
 	public void deleteById() {
-	// Arrange
-	professorRepository.deleteById(1L);
-	
-	// Act
+		// Arrange
+		courseRepository.deleteById(1L);
+		// Act
 
-}
+	}
 
 	@Test
 	public void deleteAll() {
-	// Act
-	professorRepository.deleteAllInBatch();
+		// Act
+		courseRepository.deleteAllInBatch();
 
 	}
 }

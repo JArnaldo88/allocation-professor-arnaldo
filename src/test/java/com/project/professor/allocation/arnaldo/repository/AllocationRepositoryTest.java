@@ -1,5 +1,10 @@
 package com.project.professor.allocation.arnaldo.repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -10,10 +15,6 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.project.professor.allocation.arnaldo.entity.Allocation;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -38,10 +39,12 @@ public class AllocationRepositoryTest {
 	@Test
 	public void findById() {
 		// Arrange
+		Allocation alloc = allocationRepository.findById(1L).orElse(null);
 
-		// Act
+	   // Act
 
-		// Print
+	   // Print
+		System.out.println(alloc);
 
 	}
 
